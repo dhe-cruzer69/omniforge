@@ -1,0 +1,25 @@
+{
+  "id": "demo_ecobottle",
+  "task": "eco-friendly water bottle launch",
+  "brand": "ACME",
+  "voice": {
+    "tone": "optimistic, science-backed",
+    "style": "clear benefits + light emotion",
+    "avoid": ["hype", "greenwashing"]
+  },
+  "winning_patterns": {
+    "headline": "question → benefit",
+    "cta": "curiosity-gap button",
+    "voiceover_style": "casual + product ASMR"
+  },
+  "tool_chain": [
+    "idea-gen",
+    "social-copy",
+    "tts",
+    "landing-page"
+  ],
+  "runtime_sec": 230,
+  "quality_score": 9.2,
+  "tags": ["drinkware", "sustainability", "eco"],
+  "created_at": "2026-06-01T10:00:00"
+}
