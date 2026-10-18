@@ -96,6 +96,27 @@ python main.py brand --tone "warm, science-backed, optimistic" --style "short se
 
 ---
 
+<!-- X4-APEX-DIAGRAM-START:omniforge -->
+
+```mermaid
+flowchart TB
+    BRIEF[Campaign Brief] --> PLAN[Orchestrator Planning]
+    VOICE[Brand Voice Vault and Goal Templates] --> PLAN
+    PLAN --> RETRIEVE[Retrieve Similar Saved Skills]
+    RETRIEVE --> TOOLS[Select and Run Content Tools]
+    TOOLS --> MODEL[Local Ollama Adapter]
+    MODEL --> OUTPUT[Draft Content]
+    OUTPUT --> CAPTURE[Capture Structured Skill JSON]
+    CAPTURE --> INDEX[(Chroma Vector Index)]
+    INDEX --> RETRIEVE
+    HUMAN[Human Feedback and Review] --> LEARN[Update Skill Feedback]
+    LEARN --> INDEX
+    LEARN --> VOICE
+    REVIEW[Review Generated Content Before Publishing] -. required human step .-> OUTPUT
+```
+
+<!-- X4-APEX-DIAGRAM-END:omniforge -->
+
 ## 5. Project layout
 
 ```
