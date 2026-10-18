@@ -125,3 +125,30 @@ omniforge/
 ## Disclaimer
 
 This is an educational / prototyping system. Generated marketing content should always be reviewed by a human before publishing.
+
+## APEX Architecture Map
+
+> Status: architecture documentation; implementation and deployment claims require independent verification.
+
+```mermaid
+flowchart LR
+  User[Local user] --> CLI[CLI / API entry]
+  CLI --> Validate[Validate request and size limits]
+  Validate --> Planner[Local orchestrator]
+  Planner --> Skills{Requested skill available?}
+  Skills -->|yes| Dispatch[Dispatch selected capability]
+  Skills -->|no| SafeFallback[Explicit fallback or unsupported error]
+  Dispatch --> Provider{Provider available?}
+  Provider -->|local| Ollama[Ollama adapter]
+  Provider -->|remote enabled| Remote[Remote adapter behind opt-in]
+  Provider -->|none| Unavailable[ProviderUnavailable]
+  Ollama --> Context[Context / retrieval adapter]
+  Remote --> Context
+  Context --> ValidateOut[Validate response and provenance]
+  ValidateOut -->|valid| Result[Return response]
+  ValidateOut -->|invalid| Fail[Fail closed with diagnostic]
+  SafeFallback --> Result
+  Unavailable --> Fail
+```
+**Evidence note:** Provider fallback, retrieval persistence, and offline behavior must be verified against source and tests; no model or vector-store integration is presumed live.
+
